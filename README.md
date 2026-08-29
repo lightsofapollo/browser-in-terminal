@@ -4,13 +4,16 @@ Stream a real Electron (Chromium) UI into a terminal that speaks the **kitty gra
 and forward the terminal's mouse and keyboard back into the page — at 60 fps, with DevTools
 rendered inside the terminal.
 
-![Chromium rendering inside Ghostty](docs/hero.png)
+![Chromium and its DevTools rendering inside Ghostty](docs/hero.png)
 
 *That is a terminal.* Everything above the bottom line is Chromium pixels pushed over the kitty
-graphics protocol; the bottom line is real terminal text, drawn on top. The panel shown is
-**Canvas particles** — the deliberate worst case, where the whole viewport changes every frame and
-damage tracking cannot help, which is why the status line reads 14.3 MB/frame. A normal UI costs
-**156 KB**; see [Headline numbers](#headline-numbers).
+graphics protocol — including **DevTools**, docked at the bottom and fully usable: live DOM tree,
+Styles pane, element selection. The bottom line is real terminal text, drawn on top.
+
+It reads `14fps` because nothing on the page is moving. The DOM tree in the shot shows why —
+`<body class="quiet">` is the class that parks animation on non-animating panels, so only the
+frames that hover and focus actually dirtied were drawn. An idle UI costs nothing; that is the
+property the whole design is built around.
 
 ```
 Chromium OSR ─paint(dirtyRect, BGRA)─▶ hash tiles ─▶ changed only ─▶ RGBA ─▶ shm ─▶ terminal
@@ -177,6 +180,12 @@ Application cost at 1600×900, 60 fps cap (`npm run bench`; terminal-side decode
 | canvas particles | 60.0 | 0.61 | 0.74 | 2148 |
 | canvas, shared texture | 60.0 | 0.66 | 0.76 | 2188 |
 | canvas, inline base64 | 60.0 | 14.17 | 15.28 | 484 |
+
+![Canvas particles, the worst case](docs/canvas-worst-case.png)
+
+The worst case, for contrast: **Canvas particles** changes the whole viewport every frame, so
+damage tracking cannot help and the cost jumps to 14.3 MB/frame at a 3098×1818 surface. That panel
+exists precisely to establish the upper bound.
 
 Measured in real Ghostty over 30 s at 1328×1598: shared memory active, frame p50 **0.16 ms**,
 638 KB/frame median, 77.5 MiB/s, 60 fps sustained.
