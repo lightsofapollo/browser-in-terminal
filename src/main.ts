@@ -1,12 +1,20 @@
 /**
  * browser-in-terminal — stream an Electron (Chromium) UI into a kitty-graphics terminal.
  *
- * Fast path: Chromium renders offscreen into a GPU shared texture. On macOS that texture is an
- * IOSurface, which on Apple silicon is CPU-addressable, so a native addon locks it and converts
- * the dirty rect straight into a POSIX shared-memory object. The terminal then maps that object
- * (kitty `t=s`) — no base64, no PTY payload, and no GPU readback.
+ * Default path: Chromium renders offscreen and hands back a CPU bitmap plus a dirty rect. That
+ * rect is the *union* of all damage, so it is used only to narrow a search: a native addon hashes
+ * the tiles inside it and converts just the tiles that actually changed, BGRA→RGBA, straight into
+ * a POSIX shared-memory object. The terminal maps that object (kitty `t=s`) — no base64 and no
+ * PTY payload. See PERF.md.
  *
- * Slow path (--no-texture): Chromium hands back a CPU bitmap and we convert it in JS.
+ * Shared-texture path (--texture): Chromium renders into a GPU shared texture; on macOS that is an
+ * IOSurface, which on Apple silicon is CPU-addressable, so the addon locks it and reads it back
+ * without a GPU roundtrip. It avoids a copy but *disables Chromium's damage reporting* (every paint
+ * arrives full-frame), and sending 5.6 MB costs far more than the copy saves — so it is not the
+ * default.
+ *
+ * Inline path (--mode=0/2): zlib+base64 over the PTY. The fallback when shared memory is
+ * unavailable, which is the case whenever the terminal is on another machine.
  */
 
 import { app, BrowserWindow, clipboard, ipcMain, screen, type NativeImage, type Rectangle } from 'electron'
