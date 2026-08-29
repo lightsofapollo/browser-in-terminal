@@ -1,0 +1,25 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    # macOS: the native addon links IOSurface, and this is the only platform the
+    # project is tested on. The GUI suites (shim / smoke / visual) need a real TTY
+    # and a window server, so they are not run here — see README "Commands".
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install (builds the native addon against Electron headers)
+        run: npm ci
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Unit tests
+        run: npm test

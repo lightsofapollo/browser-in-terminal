@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>browser-in-terminal stress</title>
+<link rel="stylesheet" href="app.css" />
+</head>
+<body>
+<div class="shell">
+  <nav class="sidebar">
+    <div class="brand">
+      <div class="dot"></div>
+      <div>
+        <div class="brand-name">browser-in-terminal</div>
+        <div class="brand-sub">Chromium → kitty graphics</div>
+      </div>
+    </div>
+    <button class="nav" data-panel="idle"><span class="k">1</span> Idle <em>~0 damage</em></button>
+    <button class="nav" data-panel="cursor"><span class="k">2</span> Tiny updates <em>1 tile</em></button>
+    <button class="nav" data-panel="scroll"><span class="k">3</span> Scroll list <em>full column</em></button>
+    <button class="nav" data-panel="canvas"><span class="k">4</span> Canvas particles <em>full frame</em></button>
+    <button class="nav" data-panel="motion"><span class="k">5</span> CSS motion grid <em>scattered</em></button>
+    <button class="nav" data-panel="form"><span class="k">6</span> Forms &amp; hover <em>input test</em></button>
+    <button class="nav" data-panel="text"><span class="k">7</span> Typography <em>text quality</em></button>
+    <div class="spacer"></div>
+    <div class="meter">
+      <div class="meter-row"><span>page fps</span><b id="pagefps">–</b></div>
+      <div class="meter-row"><span>frame budget</span><b id="budget">–</b></div>
+      <div class="bar"><i id="barfill"></i></div>
+      <p class="hint">Terminal-side stats are on the bottom line.<br />ctrl+1..4 switches transport mode.</p>
+    </div>
+  </nav>
+
+  <main class="content">
+    <section class="panel active" data-panel="idle">
+      <h1>A completely static page</h1>
+      <p class="lede">Nothing animates here. In a damage-tracked mode the terminal should receive almost
+        nothing — the frame counter stops climbing and bandwidth falls to zero. In full-frame mode you are
+        still paying for the entire window, every frame, forever.</p>
+      <div class="cards">
+        <div class="card"><h3>Damage</h3><p>None after first paint</p></div>
+        <div class="card"><h3>Expected</h3><p>0 KB/s in tile modes</p></div>
+        <div class="card"><h3>Watch</h3><p>The dropped counter should stay flat</p></div>
+      </div>
+    </section>
+
+    <section class="panel" data-panel="cursor">
+      <h1>Tiny, frequent updates</h1>
+      <p class="lede">A blinking caret and a ticking clock: the smallest realistic damage. This is the case
+        damage tracking wins by a hundred times, and the case that decides whether a terminal UI feels alive
+        over SSH.</p>
+      <div class="terminalish">
+        <div class="line"><span class="prompt">$</span> tail -f /var/log/render.log</div>
+        <div class="line dim" id="logline">waiting…</div>
+        <div class="line"><span class="prompt">$</span> <span id="typed"></span><span class="caret"></span></div>
+      </div>
+      <div class="clock" id="clock">00:00:00.000</div>
+    </section>
+
+    <section class="panel" data-panel="scroll">
+      <h1>Scroll a long list</h1>
+      <p class="lede">Use the wheel. Terminals report wheel <em>ticks</em>, not pixel deltas, so this also
+        shows how coarse terminal scrolling feels compared with a trackpad.</p>
+      <div class="list" id="list"></div>
+    </section>
+
+    <section class="panel" data-panel="canvas">
+      <h1>Canvas particles</h1>
+      <p class="lede">Worst case: the whole viewport changes every frame, so damage tracking cannot help.
+        This is the honest upper bound on full-frame throughput for this transport.</p>
+      <canvas id="particles"></canvas>
+    </section>
+
+    <section class="panel" data-panel="motion">
+      <h1>Scattered CSS motion</h1>
+      <p class="lede">Many small animated elements spread across the viewport. Damage is fragmented, so the
+        tile count climbs and tiled mode loses some of its advantage — the interesting middle case.</p>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <section class="panel" data-panel="form">
+      <h1>Real input</h1>
+      <p class="lede">Type, click, focus, hover. Every event here came from the terminal: SGR-pixel mouse
+        coordinates and kitty keyboard sequences, translated into Chromium input events.</p>
+      <div class="form">
+        <label>Name <input id="name" type="text" placeholder="type here" /></label>
+        <label>Search <input type="search" placeholder="hover and focus me" /></label>
+        <label>Range <input type="range" min="0" max="100" value="40" /></label>
+        <label class="check"><input type="checkbox" checked /> A checkbox</label>
+        <select><option>Choose an option</option><option>Second</option><option>Third</option></select>
+        <div class="buttons">
+          <button class="primary" id="clicker">Clicked 0 times</button>
+          <button>Secondary</button>
+          <button class="ghost">Ghost</button>
+        </div>
+        <p class="echo" id="echo">Keyboard echo: <b>—</b></p>
+      </div>
+      <div class="hoverzone">
+        <div class="hover-card">Hover</div><div class="hover-card">these</div>
+        <div class="hover-card">cards</div><div class="hover-card">please</div>
+      </div>
+    </section>
+
+    <section class="panel" data-panel="text">
+      <h1>Typography &amp; rendering fidelity</h1>
+      <p class="lede">Subpixel positioning, ligatures, italics, and small text — the things that look wrong
+        when a UI is rasterized and rescaled. Compare this against your terminal's own font.</p>
+      <article class="prose">
+        <p>The quick brown fox jumps over the lazy dog. <em>Italic text sits here.</em> <strong>Bold text
+        sits here.</strong> Small caps, numerals 0123456789, and punctuation — em dashes, "smart quotes",
+        and ellipses… all at 1× and 2× device pixel ratios.</p>
+        <pre><code>fn main() {
+    let scale = terminal.pixels() / terminal.cells();
+    render(scale); // sub-pixel text is the hard part
+}</code></pre>
+        <p class="small">This paragraph is intentionally small (11px) to expose hinting and gamma problems in
+        the image pipeline. If it is crisp here, the RGBA path and the scale factor are both correct.</p>
+        <table>
+          <thead><tr><th>Mode</th><th>Payload</th><th>Best for</th></tr></thead>
+          <tbody>
+            <tr><td>full-b64</td><td>compressed whole frame</td><td>ssh, simple scenes</td></tr>
+            <tr><td>full-file</td><td>raw whole frame</td><td>local baseline</td></tr>
+            <tr><td>tile-b64</td><td>compressed dirty tiles</td><td>ssh, real UIs</td></tr>
+            <tr><td>tile-file</td><td>raw dirty tiles</td><td>local, fastest</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

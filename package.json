@@ -1,0 +1,52 @@
+{
+  "name": "browser-in-terminal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Stream a real Electron (Chromium) UI into a kitty-graphics terminal at 60 fps, with full mouse and keyboard forwarding and DevTools rendered in the terminal.",
+  "license": "MIT",
+  "author": "James Lal",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lightsofapollo/browser-in-terminal.git"
+  },
+  "homepage": "https://github.com/lightsofapollo/browser-in-terminal#readme",
+  "bugs": {
+    "url": "https://github.com/lightsofapollo/browser-in-terminal/issues"
+  },
+  "keywords": [
+    "kitty-graphics",
+    "terminal",
+    "ghostty",
+    "electron",
+    "offscreen-rendering",
+    "tui",
+    "chromium",
+    "kitty"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "build/main.js",
+  "scripts": {
+    "build": "esbuild src/main.ts --bundle --platform=node --target=node22 --format=cjs --external:electron --outfile=build/main.js && esbuild src/preload.ts --bundle --platform=node --target=node22 --format=cjs --external:electron --outfile=build/preload.js",
+    "start": "npm run build && electron . ",
+    "typecheck": "tsc --noEmit",
+    "build:lib": "esbuild src/index.ts --bundle --platform=node --target=node22 --format=cjs --external:electron --outfile=build/lib.cjs",
+    "test": "npm run build:lib && node --test \"test/*.test.js\"",
+    "bench": "npm run build && python3 bench/bench.py",
+    "smoke": "npm run build && python3 -u bench/smoke.py",
+    "build:native": "node-gyp rebuild --directory=native --target=44.0.0 --dist-url=https://electronjs.org/headers",
+    "postinstall": "npm run build:native",
+    "verify": "npm run typecheck && npm test && npm run shim && npm run smoke && npm run visual",
+    "visual": "npm run build && python3 -u bench/visual.py",
+    "shim": "npm run build:lib && electron bench/shim.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "electron": "^44.0.0",
+    "esbuild": "^0.25.0",
+    "node-addon-api": "^8.9.2",
+    "node-gyp": "^13.0.2",
+    "typescript": "^5.7.0"
+  }
+}

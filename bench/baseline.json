@@ -1,0 +1,725 @@
+{
+  "px": [
+    1600,
+    900
+  ],
+  "cells": [
+    157,
+    44
+  ],
+  "results": [
+    {
+      "uptime": 8.045,
+      "mode": "tile-shm",
+      "path": "bitmap",
+      "focused": true,
+      "fps": 0,
+      "fpsWindow": 0,
+      "timings": {
+        "frame": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        },
+        "copy": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        },
+        "encode": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        },
+        "write": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        },
+        "interval": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        }
+      },
+      "bytes": {
+        "perFrame": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        },
+        "totalMiB": 0,
+        "rateMiBs": 0
+      },
+      "tiles": {
+        "count": 0,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "counters": {
+        "fullFrameFallbacks": 1,
+        "frames": 9
+      },
+      "memory": {
+        "rssMiB": 212.969,
+        "externalMiB": 41.554,
+        "shmPendingMiB": 2.117,
+        "shmPendingCount": 74
+      },
+      "final": true,
+      "scenario": "idle",
+      "texture": false,
+      "frameRateCap": 60,
+      "geometry": {
+        "px": [
+          1600,
+          900
+        ],
+        "cells": [
+          157,
+          44
+        ]
+      },
+      "capabilities": {
+        "kittyGraphics": true,
+        "sharedMemory": true,
+        "responded": true,
+        "da1": "62;22"
+      },
+      "runs": 2,
+      "label": "idle/damage"
+    },
+    {
+      "uptime": 8.031,
+      "mode": "tile-shm",
+      "path": "bitmap",
+      "focused": true,
+      "fps": 60.007,
+      "fpsWindow": 59.967,
+      "timings": {
+        "frame": {
+          "count": 300,
+          "mean": 0.097,
+          "p50": 0.094,
+          "p95": 0.129,
+          "p99": 0.178,
+          "max": 0.19
+        },
+        "copy": {
+          "count": 300,
+          "mean": 0.049,
+          "p50": 0.046,
+          "p95": 0.076,
+          "p99": 0.122,
+          "max": 0.155
+        },
+        "encode": {
+          "count": 300,
+          "mean": 0.022,
+          "p50": 0.021,
+          "p95": 0.033,
+          "p99": 0.039,
+          "max": 0.046
+        },
+        "write": {
+          "count": 300,
+          "mean": 0.019,
+          "p50": 0.019,
+          "p95": 0.026,
+          "p99": 0.032,
+          "max": 0.048
+        },
+        "interval": {
+          "count": 299,
+          "mean": 16.663,
+          "p50": 16.661,
+          "p95": 17.559,
+          "p99": 17.841,
+          "max": 18.268
+        }
+      },
+      "bytes": {
+        "perFrame": {
+          "count": 300,
+          "mean": 136200,
+          "p50": 120000,
+          "p95": 270000,
+          "p99": 300000,
+          "max": 450000
+        },
+        "totalMiB": 38.967,
+        "rateMiBs": 7.794
+      },
+      "tiles": {
+        "count": 300,
+        "mean": 4.54,
+        "p50": 4,
+        "p95": 9,
+        "p99": 10,
+        "max": 15
+      },
+      "counters": {
+        "fullFrameFallbacks": 1,
+        "frames": 472
+      },
+      "memory": {
+        "rssMiB": 232.891,
+        "externalMiB": 52.544,
+        "shmPendingMiB": 0.973,
+        "shmPendingCount": 34
+      },
+      "final": true,
+      "scenario": "cursor",
+      "texture": false,
+      "frameRateCap": 60,
+      "geometry": {
+        "px": [
+          1600,
+          900
+        ],
+        "cells": [
+          157,
+          44
+        ]
+      },
+      "capabilities": {
+        "kittyGraphics": true,
+        "sharedMemory": true,
+        "responded": true,
+        "da1": "62;22"
+      },
+      "runs": 2,
+      "label": "tiny/damage"
+    },
+    {
+      "uptime": 8.029,
+      "mode": "tile-shm",
+      "path": "bitmap",
+      "focused": true,
+      "fps": 60.001,
+      "fpsWindow": 60.016,
+      "timings": {
+        "frame": {
+          "count": 300,
+          "mean": 0.739,
+          "p50": 0.706,
+          "p95": 0.855,
+          "p99": 1.891,
+          "max": 2
+        },
+        "copy": {
+          "count": 300,
+          "mean": 0.433,
+          "p50": 0.428,
+          "p95": 0.508,
+          "p99": 0.553,
+          "max": 0.586
+        },
+        "encode": {
+          "count": 300,
+          "mean": 0.162,
+          "p50": 0.156,
+          "p95": 0.212,
+          "p99": 0.276,
+          "max": 0.33
+        },
+        "write": {
+          "count": 300,
+          "mean": 0.123,
+          "p50": 0.095,
+          "p95": 0.131,
+          "p99": 1.245,
+          "max": 1.29
+        },
+        "interval": {
+          "count": 299,
+          "mean": 16.666,
+          "p50": 16.647,
+          "p95": 17.224,
+          "p99": 18.159,
+          "max": 18.442
+        }
+      },
+      "bytes": {
+        "perFrame": {
+          "count": 300,
+          "mean": 1782900,
+          "p50": 1800000,
+          "p95": 1860000,
+          "p99": 1860000,
+          "max": 1860000
+        },
+        "totalMiB": 510.092,
+        "rateMiBs": 102.02
+      },
+      "tiles": {
+        "count": 300,
+        "mean": 59.43,
+        "p50": 60,
+        "p95": 62,
+        "p99": 62,
+        "max": 62
+      },
+      "counters": {
+        "fullFrameFallbacks": 1,
+        "frames": 472
+      },
+      "memory": {
+        "rssMiB": 207.797,
+        "externalMiB": 36.058,
+        "shmPendingMiB": 14.076,
+        "shmPendingCount": 492
+      },
+      "final": true,
+      "scenario": "motion",
+      "texture": false,
+      "frameRateCap": 60,
+      "geometry": {
+        "px": [
+          1600,
+          900
+        ],
+        "cells": [
+          157,
+          44
+        ]
+      },
+      "capabilities": {
+        "kittyGraphics": true,
+        "sharedMemory": true,
+        "responded": true,
+        "da1": "62;22"
+      },
+      "runs": 2,
+      "label": "scroll/damage"
+    },
+    {
+      "uptime": 8.033,
+      "mode": "tile-shm",
+      "path": "bitmap",
+      "focused": true,
+      "fps": 59.998,
+      "fpsWindow": 59.958,
+      "timings": {
+        "frame": {
+          "count": 300,
+          "mean": 0.761,
+          "p50": 0.671,
+          "p95": 0.788,
+          "p99": 1.785,
+          "max": 12.518
+        },
+        "copy": {
+          "count": 300,
+          "mean": 0.408,
+          "p50": 0.402,
+          "p95": 0.474,
+          "p99": 0.521,
+          "max": 0.596
+        },
+        "encode": {
+          "count": 300,
+          "mean": 0.153,
+          "p50": 0.148,
+          "p95": 0.198,
+          "p99": 0.225,
+          "max": 0.294
+        },
+        "write": {
+          "count": 300,
+          "mean": 0.178,
+          "p50": 0.095,
+          "p95": 0.126,
+          "p99": 1.239,
+          "max": 11.914
+        },
+        "interval": {
+          "count": 299,
+          "mean": 16.666,
+          "p50": 16.663,
+          "p95": 18.55,
+          "p99": 19.701,
+          "max": 28.425
+        }
+      },
+      "bytes": {
+        "perFrame": {
+          "count": 300,
+          "mean": 1659800,
+          "p50": 1650000,
+          "p95": 1680000,
+          "p99": 1680000,
+          "max": 1680000
+        },
+        "totalMiB": 474.873,
+        "rateMiBs": 94.972
+      },
+      "tiles": {
+        "count": 300,
+        "mean": 55.327,
+        "p50": 55,
+        "p95": 56,
+        "p99": 56,
+        "max": 56
+      },
+      "counters": {
+        "fullFrameFallbacks": 2,
+        "frames": 472
+      },
+      "memory": {
+        "rssMiB": 245.578,
+        "externalMiB": 58.037,
+        "shmPendingMiB": 12.817,
+        "shmPendingCount": 448
+      },
+      "final": true,
+      "scenario": "canvas",
+      "texture": false,
+      "frameRateCap": 60,
+      "geometry": {
+        "px": [
+          1600,
+          900
+        ],
+        "cells": [
+          157,
+          44
+        ]
+      },
+      "capabilities": {
+        "kittyGraphics": true,
+        "sharedMemory": true,
+        "responded": true,
+        "da1": "62;22"
+      },
+      "runs": 2,
+      "label": "canvas/damage"
+    },
+    {
+      "uptime": 8.037,
+      "mode": "tile-shm",
+      "path": "iosurface(FULL)",
+      "focused": true,
+      "fps": 59.994,
+      "fpsWindow": 59.895,
+      "timings": {
+        "frame": {
+          "count": 300,
+          "mean": 0.8,
+          "p50": 0.769,
+          "p95": 0.874,
+          "p99": 0.998,
+          "max": 9.268
+        },
+        "copy": {
+          "count": 300,
+          "mean": 0.5,
+          "p50": 0.497,
+          "p95": 0.582,
+          "p99": 0.609,
+          "max": 0.626
+        },
+        "encode": {
+          "count": 300,
+          "mean": 0.157,
+          "p50": 0.155,
+          "p95": 0.178,
+          "p99": 0.207,
+          "max": 0.41
+        },
+        "write": {
+          "count": 300,
+          "mean": 0.125,
+          "p50": 0.092,
+          "p95": 0.126,
+          "p99": 0.161,
+          "max": 8.579
+        },
+        "interval": {
+          "count": 299,
+          "mean": 16.666,
+          "p50": 16.644,
+          "p95": 17.572,
+          "p99": 17.937,
+          "max": 26.422
+        }
+      },
+      "bytes": {
+        "perFrame": {
+          "count": 300,
+          "mean": 1661000,
+          "p50": 1650000,
+          "p95": 1680000,
+          "p99": 1680000,
+          "max": 1680000
+        },
+        "totalMiB": 475.216,
+        "rateMiBs": 95.034
+      },
+      "tiles": {
+        "count": 300,
+        "mean": 55.367,
+        "p50": 55,
+        "p95": 56,
+        "p99": 56,
+        "max": 56
+      },
+      "counters": {
+        "fullFrameFallbacks": 1,
+        "frames": 472
+      },
+      "memory": {
+        "rssMiB": 167.703,
+        "externalMiB": 14.489,
+        "shmPendingMiB": 12.789,
+        "shmPendingCount": 447
+      },
+      "final": true,
+      "scenario": "canvas",
+      "texture": true,
+      "frameRateCap": 60,
+      "geometry": {
+        "px": [
+          1600,
+          900
+        ],
+        "cells": [
+          157,
+          44
+        ]
+      },
+      "capabilities": {
+        "kittyGraphics": true,
+        "sharedMemory": true,
+        "responded": true,
+        "da1": "62;22"
+      },
+      "runs": 2,
+      "label": "canvas/texture"
+    },
+    {
+      "uptime": 8.046,
+      "mode": "full-b64",
+      "path": "bitmap",
+      "focused": true,
+      "fps": 59.862,
+      "fpsWindow": 59.778,
+      "timings": {
+        "frame": {
+          "count": 300,
+          "mean": 14.688,
+          "p50": 14.531,
+          "p95": 15.655,
+          "p99": 17.167,
+          "max": 32.612
+        },
+        "copy": {
+          "count": 300,
+          "mean": 0.17,
+          "p50": 0.169,
+          "p95": 0.18,
+          "p99": 0.186,
+          "max": 0.19
+        },
+        "encode": {
+          "count": 300,
+          "mean": 8.431,
+          "p50": 8.31,
+          "p95": 9.118,
+          "p99": 9.362,
+          "max": 9.811
+        },
+        "write": {
+          "count": 300,
+          "mean": 4.553,
+          "p50": 4.487,
+          "p95": 4.956,
+          "p99": 6.764,
+          "max": 21.778
+        },
+        "interval": {
+          "count": 299,
+          "mean": 16.71,
+          "p50": 16.464,
+          "p95": 18.716,
+          "p99": 22.998,
+          "max": 33.838
+        }
+      },
+      "bytes": {
+        "perFrame": {
+          "count": 300,
+          "mean": 504073.92,
+          "p50": 504336,
+          "p95": 515388,
+          "p99": 516944,
+          "max": 518128
+        },
+        "totalMiB": 144.217,
+        "rateMiBs": 28.777
+      },
+      "tiles": {
+        "count": 300,
+        "mean": 1,
+        "p50": 1,
+        "p95": 1,
+        "p99": 1,
+        "max": 1
+      },
+      "counters": {
+        "frames": 473
+      },
+      "memory": {
+        "rssMiB": 302.922,
+        "externalMiB": 66.236,
+        "shmPendingMiB": 0,
+        "shmPendingCount": 0
+      },
+      "final": true,
+      "scenario": "canvas",
+      "texture": false,
+      "frameRateCap": 60,
+      "geometry": {
+        "px": [
+          1600,
+          900
+        ],
+        "cells": [
+          157,
+          44
+        ]
+      },
+      "capabilities": {
+        "kittyGraphics": true,
+        "sharedMemory": true,
+        "responded": true,
+        "da1": "62;22"
+      },
+      "runs": 2,
+      "label": "canvas/full-b64"
+    },
+    {
+      "uptime": 8.034,
+      "mode": "tile-shm",
+      "path": "bitmap",
+      "focused": true,
+      "fps": 0,
+      "fpsWindow": 0,
+      "timings": {
+        "frame": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        },
+        "copy": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        },
+        "encode": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        },
+        "write": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        },
+        "interval": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        }
+      },
+      "bytes": {
+        "perFrame": {
+          "count": 0,
+          "mean": 0,
+          "p50": 0,
+          "p95": 0,
+          "p99": 0,
+          "max": 0
+        },
+        "totalMiB": 0,
+        "rateMiBs": 0
+      },
+      "tiles": {
+        "count": 0,
+        "mean": 0,
+        "p50": 0,
+        "p95": 0,
+        "p99": 0,
+        "max": 0
+      },
+      "counters": {
+        "fullFrameFallbacks": 2,
+        "frames": 10
+      },
+      "memory": {
+        "rssMiB": 223.797,
+        "externalMiB": 47.047,
+        "shmPendingMiB": 2.117,
+        "shmPendingCount": 74
+      },
+      "final": true,
+      "scenario": "text",
+      "texture": false,
+      "frameRateCap": 60,
+      "geometry": {
+        "px": [
+          1600,
+          900
+        ],
+        "cells": [
+          157,
+          44
+        ]
+      },
+      "capabilities": {
+        "kittyGraphics": true,
+        "sharedMemory": true,
+        "responded": true,
+        "da1": "62;22"
+      },
+      "runs": 2,
+      "label": "typography/damage"
+    }
+  ]
+}
