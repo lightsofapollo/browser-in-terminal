@@ -4,6 +4,14 @@ Stream a real Electron (Chromium) UI into a terminal that speaks the **kitty gra
 and forward the terminal's mouse and keyboard back into the page — at 60 fps, with DevTools
 rendered inside the terminal.
 
+![Chromium rendering inside Ghostty](docs/hero.png)
+
+*That is a terminal.* Everything above the bottom line is Chromium pixels pushed over the kitty
+graphics protocol; the bottom line is real terminal text, drawn on top. The panel shown is
+**Canvas particles** — the deliberate worst case, where the whole viewport changes every frame and
+damage tracking cannot help, which is why the status line reads 14.3 MB/frame. A normal UI costs
+**156 KB**; see [Headline numbers](#headline-numbers).
+
 ```
 Chromium OSR ─paint(dirtyRect, BGRA)─▶ hash tiles ─▶ changed only ─▶ RGBA ─▶ shm ─▶ terminal
      ▲                                                                                │
